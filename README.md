@@ -1,1 +1,1 @@
-# openldap
+# ldap
