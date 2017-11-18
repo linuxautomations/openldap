@@ -10,7 +10,7 @@ systemctl enable slapd
 cd /opt
 git clone https://github.com/linuxautomations/openldap.git &>/dev/null
 [ $? -ne 0 ] && echo "Failed with pulling repo" && exit 1
-cd /opt/ldap
+cd /opt/openldap
 ldapadd -Y EXTERNAL -H ldapi:/// -f chrootpw.ldif 
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif 
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif 
@@ -20,7 +20,7 @@ ldapadd -x -D cn=Manager,dc=linuxautomations,dc=com -W -f basedomain.ldif
 
 yum install httpd php php-ldap -y &>/dev/null
 cd /var/www/html
-tar xf /opt/ldap/lam.tgz
+tar xf /opt/openldap/lam.tgz
 systemctl restart httpd
 systemctl enable httpd
 
